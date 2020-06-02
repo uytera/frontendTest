@@ -33,7 +33,7 @@ public class LoginTest extends BaseTest {
         LoginSteps loginSteps = mainPageSteps.openMainPage().clickOnLogin();
 
         loginSteps.inputUserData(login, password)
-                .conductLoginPoc()
+                .conductLoginProc()
                 .checkPageUrl();
     }
 
@@ -43,7 +43,7 @@ public class LoginTest extends BaseTest {
         LoginSteps loginSteps = mainPageSteps.openMainPage().clickOnLogin();
 
         loginSteps.inputUserData(login, password)
-                .conductLoginPoc()
+                .conductLoginProc()
                 .checkSignErrorMessage();
     }
 
@@ -53,8 +53,8 @@ public class LoginTest extends BaseTest {
         LoginSteps loginSteps = mainPageSteps.openMainPage().clickOnLogin();
 
         loginSteps.inputUserData("User", "User")
-                .conductLoginPoc();
-        LogoutSteps logoutSteps = new LogoutSteps();
+                .conductLoginProc();
+        LogoutSteps logoutSteps = new LogoutSteps(); //Переназвать класс с шагами на страницу
         logoutSteps.checkLogout()
                 .checkProtect();
     }
@@ -66,12 +66,12 @@ public class LoginTest extends BaseTest {
         MainPageSteps mainPageSteps = new MainPageSteps();
         RegSteps regSteps = mainPageSteps.openMainPage().clickOnReg();
         regSteps.inputUserData(login, password, "home@yandex.ru")
-                .conductRegPoc()
+                .conductRegProc()
                 .checkPageUrl();
 
         LoginSteps loginSteps = new LoginSteps();
         loginSteps.inputUserData(login, password)
-                .conductLoginPoc();
+                .conductLoginProc();
     }
 
     public static String generateString(Random rng, String characters, int length)

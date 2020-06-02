@@ -14,18 +14,12 @@ public class MainPageSteps extends BaseSteps<MainPage> {
     }
 
     public LoginSteps clickOnLogin(){
-        //page.getLoginHref();
-        page.clickOnLoginHref();
-        //LoginPage loginPage = new LoginPage();
-        //loginPage.navigate();
+        page.getLoginButton().click();
         return new LoginSteps();
     }
 
     public RegSteps clickOnReg(){
-        //page.getLoginHref();
-        page.clickOnRegHref();
-        //LoginPage loginPage = new LoginPage();
-        //loginPage.navigate();
+        page.getRegButton().click();
         return new RegSteps();
     }
 }

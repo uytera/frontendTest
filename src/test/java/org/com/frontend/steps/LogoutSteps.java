@@ -16,8 +16,9 @@ public class LogoutSteps extends BaseSteps<WebBrowserPage> {
     }
 
     public LogoutSteps checkLogout(){
-        page.logout();
-        Assert.assertEquals(WebDriverRunner.url(), "http://localhost:8088/login/");
+        page.getLogoutButton().click();
+        LoginPage loginPage = new LoginPage();
+        loginPage.shouldBeOpened();
         return this;
     }
 

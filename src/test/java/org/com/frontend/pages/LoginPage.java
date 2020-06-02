@@ -1,6 +1,8 @@
 package org.com.frontend.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.com.frontend.constants.Constants;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.hidden;
 import static com.codeborne.selenide.Selenide.$;
@@ -11,18 +13,16 @@ public class LoginPage extends  AbstractPage<LoginPage> {
         this.url = "http://localhost:8088/login/";
     }
 
-    public LoginPage inputLogin(String login){
-        $("form :nth-child(1)").setValue(login);
-        return this;
+    public SelenideElement getInputLoginField(){
+        return $(By.xpath( "//input[@name = \"login\"]"));
     }
 
-    public LoginPage inputPassword(String password){
-        $("form :nth-child(2)").setValue(password);
-        return this;
+    public SelenideElement getInputPasswordField(){
+        return $(By.xpath( "//input[@name = \"pass\"]"));
     }
 
-    public void submit(){
-        $("form :nth-child(3)").click();
+    public SelenideElement getSubmitButton(){
+        return $(By.xpath( "//input[@value = \"Ostium in\"]"));
     }
 
     public LoginPage navigate() {
@@ -30,7 +30,7 @@ public class LoginPage extends  AbstractPage<LoginPage> {
     }
 
     public LoginPage waitPageLoaded() {
-        $("form :nth-child(3)").waitWhile(hidden , Constants.PAGE_LOAD_TIME);
+        $("form :last-child").waitWhile(hidden , Constants.PAGE_LOAD_TIME);
         return this;
     }
 }

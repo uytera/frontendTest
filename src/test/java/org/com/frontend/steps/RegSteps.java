@@ -1,6 +1,7 @@
 package org.com.frontend.steps;
 
 import com.codeborne.selenide.WebDriverRunner;
+import org.com.frontend.pages.LoginPage;
 import org.com.frontend.pages.RegPage;
 import org.com.frontend.pages.WebBrowserPage;
 import org.testng.Assert;
@@ -15,19 +16,20 @@ public class RegSteps extends BaseSteps<RegPage> {
     }
 
     public RegSteps inputUserData (String login, String password, String email){
-        page.inputLogin(login);
-        page.inputPassword(password);
-        page.inputEmail(email);
+        page.getLoginField().setValue(login);
+        page.getPasswordField().setValue(password);
+        page.getEmailField().setValue(email);
         return this;
     }
 
-    public RegSteps conductRegPoc (){
-        page.submit();
+    public RegSteps conductRegProc (){
+        page.getSubmitButton().click();
         return this;
     }
 
     public RegSteps checkPageUrl(){
-        Assert.assertEquals(WebDriverRunner.url(), "http://localhost:8088/login/");
+        LoginPage loginPage = new LoginPage();
+        loginPage.shouldBeOpened();
         return this;
     }
 }

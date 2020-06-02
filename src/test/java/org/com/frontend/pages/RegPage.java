@@ -1,6 +1,8 @@
 package org.com.frontend.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.com.frontend.constants.Constants;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.hidden;
 import static com.codeborne.selenide.Selenide.$;
@@ -12,23 +14,20 @@ public class RegPage extends AbstractPage<RegPage> {
         this.url = "http://localhost:8088/registration/";
     }
 
-    public RegPage inputLogin(String login){
-        $("form :nth-child(1)").setValue(login);
-        return this;
+    public SelenideElement getLoginField(){
+        return $(By.xpath( "//input[@name = \"login\"]"));
     }
 
-    public RegPage inputPassword(String password){
-        $("form :nth-child(2)").setValue(password);
-        return this;
+    public SelenideElement getPasswordField(){
+        return $(By.xpath( "//input[@name = \"pass\"]"));
     }
 
-    public RegPage inputEmail(String email){
-        $("form :nth-child(3)").setValue(email);
-        return this;
+    public SelenideElement getEmailField(){
+        return $(By.xpath( "//input[@name = \"email\"]"));
     }
 
-    public void submit(){
-        $("form :nth-child(4)").click();
+    public SelenideElement getSubmitButton(){
+        return $(By.xpath( "//input[@value = \"Reprehendo in\"]"));
     }
 
     public RegPage navigate() {
@@ -36,7 +35,7 @@ public class RegPage extends AbstractPage<RegPage> {
     }
 
     public RegPage waitPageLoaded() {
-        $("form :nth-child(4)").waitWhile(hidden , Constants.PAGE_LOAD_TIME);
+        $("form :last-child").waitWhile(hidden , Constants.PAGE_LOAD_TIME);
         return this;
     }
 }

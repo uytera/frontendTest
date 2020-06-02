@@ -1,8 +1,11 @@
 package org.com.frontend.pages;
 
-import static com.codeborne.selenide.Condition.hidden;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
+import org.openqa.selenium.By;
+import org.testng.Assert;
+
 import static com.codeborne.selenide.Selenide.$;
-import static org.com.frontend.constants.Constants.PAGE_LOAD_TIME;
 
 public class WebBrowserPage extends AbstractPage<WebBrowserPage> {
 
@@ -15,12 +18,12 @@ public class WebBrowserPage extends AbstractPage<WebBrowserPage> {
         return super.navigate(this.getClass());
     }
 
-    public void logout(){
-        $(".back :nth-child(3)").click();
+    public SelenideElement getLogoutButton(){
+        return $(By.xpath( "//a[@href = \"/back/account/out/\"]"));
     }
 
     public WebBrowserPage waitPageLoaded() {
-        //$(".back :nth-child(3)").waitWhile(hidden , PAGE_LOAD_TIME);
+        Assert.assertEquals(WebDriverRunner.url(), "http://localhost:8088/FileBrowser");
         return this;
     }
 }
